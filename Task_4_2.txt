@@ -1,0 +1,21 @@
+-- Завдання 4.2
+/* Змініть декілька операторів INNER на LEFT чи RIGHT. */
+
+SELECT COUNT(*) FROM order_details AS od
+LEFT JOIN orders AS o USING (order_id)
+LEFT JOIN products AS p USING (product_id)
+LEFT JOIN customers AS cs USING (customer_id)
+LEFT JOIN employees AS e USING (employee_id)
+LEFT JOIN shippers AS sh USING (shipper_id)
+LEFT JOIN categories AS ct USING (category_id)
+LEFT JOIN suppliers AS sp USING (supplier_id);
+
+/* Визначте, що відбувається з кількістю рядків. Чому? Напишіть відповідь у текстовому файлі. */
+
+/* Обидва запити - з INNER JOIN та LEFT JOIN повертають 518 рядків - результат збігається, оскільки базовою таблицею 
+виступає order_details, а усі наступні з'єднання будуються послідовно від уже існуючих замовлених позицій, в яких 
+однозначно є покупець, товар з виробником та категорією, працівник, який обробив замовлення, та постачальник.
+Тобто кожен запис у order_details має валідні зовнішні ключі, які 100% існують у дочірніх таблицях, і жодне з полів 
+зв'язку не містить значень NULL. Відповідно, оператор LEFT JOIN не створює жодного додаткового рядка з незбіжними даними.
+Клієнти, які зареєстровані, але ще не зробили жодного замовлення, у вибірку не потрапляють, оскільки зв'язок іде від факту продажу.
+*/
