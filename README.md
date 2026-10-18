@@ -48,6 +48,7 @@ DML and DDL commands. SQL expressions
 
 #### 4.1. Підрахунок загальної кількості рядків
 Запит повертає **518** рядків.
+
 ![Результат 4.1](screenshots/p4_1.png)
 
 #### 4.2. Зміна INNER JOIN на LEFT JOIN та аналіз результатів
